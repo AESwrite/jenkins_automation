@@ -4,7 +4,6 @@
 
 source jenkins_globals.bash
 
-
 # Build image from current dir and deploy container 
 docker build -t $IMAGE_NAME:$IMAGE_TAG .
 

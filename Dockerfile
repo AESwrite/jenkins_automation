@@ -16,4 +16,3 @@ COPY casc.yaml /var/jenkins_home/casc.yaml
 ### Docker block, uncomment if you need access to host docker daemon ###
 
 
-

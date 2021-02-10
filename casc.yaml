@@ -1,27 +1,30 @@
 jenkins:
   securityRealm:
     local:
-      # prevents anonymous users from creating an account through the web interface
+      # prevents anonymous users from creating
+      # an account through the web interface
       allowsSignup: false
       users:
        - id: ${JENKINS_ADMIN_ID}
          password: ${JENKINS_ADMIN_PASSWORD}
   authorizationStrategy:
-    # More flexible permissions configuration with  Matrix Authorization Strategy plugin
+    # More flexible permissions configuration with
+    # Matrix Authorization Strategy plugin
     globalMatrix:
       permissions:
         - "Overall/Administer:admin"
         - "Overall/Read:authenticated"
-    # Agent to Controller Access Control, allow control which commands and files the agents have access to
-    remotingSecurity:
-      enabled: true
-    security:
-      # jobs should be ran using the same Jenkins user that configured or triggered it
-      queueItemAuthenticator:
-        authenticators:
-        - global:
-            strategy: triggeringUsersAuthorizationStrategy
+        # enabling Agent to Controller Access Control
+        # allow control which commands and files the agents have access to
+  remotingSecurity:
+    enabled: true
+security:
+  # jobs should be ran using the same Jenkins user
+  # that configured or triggered it
+  queueItemAuthenticator:
+    authenticators:
+    - global:
+        strategy: triggeringUsersAuthorizationStrategy
 unclassified:
   location:
-    # update server_ip
-    url: http://${SERVER_IP}:8080/
+    url: http://${SERVER_IP}:{HOST_PORT}/
