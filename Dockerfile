@@ -1,5 +1,5 @@
 ### Default ###
-FROM FROM jenkins/jenkins:latest
+FROM jenkins/jenkins:latest
 
 ### Disable setup wizard ###
 ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false

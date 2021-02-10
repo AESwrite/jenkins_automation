@@ -12,6 +12,9 @@ jenkins:
       permissions:
         - "Overall/Administer:admin"
         - "Overall/Read:authenticated"
+    # Agent to Controller Access Control, allow control which commands and files the agents have access to
+    remotingSecurity:
+      enabled: true
     security:
       # jobs should be ran using the same Jenkins user that configured or triggered it
       queueItemAuthenticator:
