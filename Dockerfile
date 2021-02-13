@@ -31,5 +31,6 @@ RUN curl -L "https://github.com/docker/compose/releases/download/${COMPOSE_VERSI
 RUN usermod -u $HOST_UID jenkins
 RUN groupmod -g $HOST_GID docker
 RUN usermod -aG docker jenkins
+# RUN chgrp -R jenkins /var/jenkins_home  && chown -R jenkins /var/jenkins_home 
 
 USER jenkins

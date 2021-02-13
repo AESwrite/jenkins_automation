@@ -28,10 +28,6 @@ echo ">> Check if ${HOST_JENKINS_VOLUME} exists."
 echo ">> Creating , PLEASE enter your password." && \
 sudo mkdir -p $HOST_JENKINS_VOLUME
 
-echo ">> Set ownership of the ${HOST_JENKINS_VOLUME} for jenkins user"
-sudo chgrp -R /srv/www/jenkins jenkins
-sudo chown -R /srv/www/jenkins jenkins
-
 echo ">> Adding jenkins user to docker group. PlEASE enter password if asked."
 sudo usermod -aG docker jenkins
 
@@ -48,7 +44,14 @@ docker-compose build \
 --build-arg HOST_GID=$DOCKER_HOST_GID \
 --build-arg COMPOSE_VERSION=$DOCKER_COMPOSE_VERSION
 
+# echo ">> Copying jenkins configuration."
+# sudo cp casc.yaml ${HOST_JENKINS_VOLUME}
+
+echo ">> Set ownership of the ${HOST_JENKINS_VOLUME} for jenkins user"
+sudo chgrp -R jenkins $HOST_JENKINS_VOLUME 
+sudo chown -R jenkins $HOST_JENKINS_VOLUME
+
 echo ">> Starting ${CONATAINER_NAME}"
-docker-compose up
+docker-compose up -d
 echo ">>>>>>>>>>>>>> FINISHED"
 docker ps | grep "${CONATAINER_NAME}"
